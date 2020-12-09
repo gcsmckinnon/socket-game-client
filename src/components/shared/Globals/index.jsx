@@ -12,8 +12,8 @@ const GlobalStoreProvider = ({children}) => {
       REACT_APP_ENDPOINT = "http://localhost:4000";
       REACT_APP_SOCKET = "ws://localhost:4000";
     } else {
-      REACT_APP_ENDPOINT = "https://socket-game-api.herokuapp.com/";
-      REACT_APP_SOCKET = "wss://socket-game-api.herokuapp.com/";
+      REACT_APP_ENDPOINT = "https://socket-game-api.herokuapp.com";
+      REACT_APP_SOCKET = "wss://socket-game-api.herokuapp.com";
     }
     setGlobalStore({ REACT_APP_ENDPOINT, REACT_APP_SOCKET });
   }, []);
