@@ -15,7 +15,7 @@ const Edit = () => {
     .then(({ data }) => {
       setUserDetails(data);
     });
-  }, []);
+  }, [user]);
 
   return (
     userDetails ? (

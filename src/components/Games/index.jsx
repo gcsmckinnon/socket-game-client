@@ -22,7 +22,7 @@ const Game = () => {
     };
 
     socketClient.onmessage = parseMessage;
-  }, []);
+  }, [globalStore, parseMessage, user]);
 
   const parseMessage = ({ data }) => {
     try {

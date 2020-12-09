@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import { useEffect } from 'react';
 import { UserContext } from '../../Authentication/UserProvider';
 import { GlobalStoreContext } from '../../shared/Globals';
-import { NotificationContext } from '../../shared/Notifications';
 import { Container, Media } from 'react-bootstrap';
 import Header from '../../shared/Header';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,6 @@ import { Link } from 'react-router-dom';
 const Show = () => {
   const { user } = useContext(UserContext);
   const { globalStore } = useContext(GlobalStoreContext);
-  const { setNotification } = useContext(NotificationContext);
   const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
@@ -19,7 +17,7 @@ const Show = () => {
     .then(({ data }) => {
       setUserDetails(data);
     });
-  }, []);
+  }, [globalStore, user]);
 
   return (
     userDetails ? (

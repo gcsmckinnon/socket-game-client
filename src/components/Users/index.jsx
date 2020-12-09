@@ -21,7 +21,7 @@ const Users = () => {
         message: "Couldn't access the users at this time."
       });
     });
-  }, []);
+  }, [globalStore, setNotification]);
 
   return (
     users ? (
