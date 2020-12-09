@@ -44,7 +44,7 @@ const Game = () => {
         });
       }
     };
-  }, [globalStore, user]);
+  }, [globalStore, user, game, setNotification]);
 
   const handleGuess = num => {
     if (client) {
