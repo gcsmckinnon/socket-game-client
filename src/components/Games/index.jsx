@@ -21,32 +21,30 @@ const Game = () => {
       setClient(socketClient);
     };
 
-    socketClient.onmessage = parseMessage;
-  }, [globalStore, parseMessage, user]);
-
-  const parseMessage = ({ data }) => {
-    try {
-      const { game: wsGame } = JSON.parse(data);
+    socketClient.onmessage = ({ data }) => {
+      try {
+        const { game: wsGame } = JSON.parse(data);
+    
+        if (wsGame) {
+          setGame({ ...game, ...wsGame });
   
-      if (wsGame) {
-        setGame({ ...game, ...wsGame });
-
-        if (wsGame.message) {
-          try {
-            setNotification({...wsGame.message});
-          } catch (error) {
-            console.log("ISSUE WITH MESSAGE: ", wsGame.message);
+          if (wsGame.message) {
+            try {
+              setNotification({...wsGame.message});
+            } catch (error) {
+              console.log("ISSUE WITH MESSAGE: ", wsGame.message);
+            }
           }
         }
+      } catch (error) {
+        console.error(error.message);
+        setNotification({
+          type: 'danger',
+          message: "There was an error connecting to the gamel"
+        });
       }
-    } catch (error) {
-      console.error(error.message);
-      setNotification({
-        type: 'danger',
-        message: "There was an error connecting to the gamel"
-      });
-    }
-  };
+    };
+  }, [globalStore, user]);
 
   const handleGuess = num => {
     if (client) {
